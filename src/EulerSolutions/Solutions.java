@@ -66,26 +66,21 @@ public class Solutions
     // What is the largest prime factor of the number 600851475143 ?
     public static long Problem_3()
     {
-        /*
         final long input = 600851475143L;
 
-        long currentLargestPrimeFactor = 1;
+        long currentLargestPrimeFactor = -1;
 
-        // Hypothesis: It is pointless to test a value that is over 50% of the input,
-        long testUntilValue = (long)Math.ceil(input / 2);
-
-        for(long i = 1; i < testUntilValue; i++)
+        /*
+        for (long i = input; i > 1; i--) // brute force, not working
         {
-            if (input % i == 0)
+            if (Helper.isPrimeNumber(i) && i > currentLargestPrimeFactor && input % i == 0)
             {
-
+                currentLargestPrimeFactor = i;
             }
         }
-
-
         */
 
-        return -1;
+        return currentLargestPrimeFactor;
     }
 
     // A palindromic number reads the same both ways. The largest palindrome made
@@ -191,7 +186,7 @@ public class Solutions
 
         for (int i = 1; true; i++)
         {
-            if (isPrimeNumber(i))
+            if (Helper.isPrimeNumber(i))
             {
                 count++;
 
@@ -201,20 +196,6 @@ public class Solutions
                 }
             }
         }
-    }
-
-    // AKS algorithm implementation:
-    // https://stackoverflow.com/questions/2385909/what-would-be-the-fastest-method-to-test-for-primality-in-java
-    public static boolean isPrimeNumber(int n)
-    {
-        if(n < 2) return false;
-        if(n == 2 || n == 3) return true;
-        if(n%2 == 0 || n%3 == 0) return false;
-        long sqrtN = (long)Math.sqrt(n)+1;
-        for(long i = 6L; i <= sqrtN; i += 6) {
-            if(n%(i-1) == 0 || n%(i+1) == 0) return false;
-        }
-        return true;
     }
 
     // The four adjacent digits in the 1000-digit number that have the greatest product are 9 × 9 × 8 × 9 = 5832.
@@ -304,5 +285,51 @@ public class Solutions
         }
 
         return maxProduct;
+    }
+
+    // A Pythagorean triplet is a set of three natural numbers, a < b < c, for which,
+    // a^2 + b^2 = c^2
+    // For example, 32 + 42 = 9 + 16 = 25 = 52.
+    // There exists exactly one Pythagorean triplet for which a + b + c = 1000.
+    // Find the product abc.
+    public static int Problem_9() // CORRECT
+    {
+        final int MAX_SUM = 1000;
+
+        // Brute force method:
+
+        // Min value for any of a, b or c is 1.
+        // Max value for any of a, b, or c must be 1000 - 2 * minValue(Natural Number) = 998
+        for (int a = 1; a <= 998; a++)
+        {
+            for (int b = 1; b <= 998; b++)
+            {
+                for (int c = 1; c <= 998; c++)
+                {
+                    if (a + b + c == MAX_SUM && Math.pow(a, 2) + Math.pow(b, 2) == Math.pow(c, 2))
+                    {
+                        return a * b * c;
+                    }
+                }
+            }
+        }
+
+        return -1;
+    }
+
+    public static long Problem_10() // CORRECT
+    {
+        final int LIMIT = 2 * (int)Math.pow(10, 6); // 2 million
+        long sum = 0L;
+
+        for (int i = 2; i <= LIMIT; i++)
+        {
+            if (Helper.isPrimeNumber(i))
+            {
+                sum += i;
+            }
+        }
+
+        return sum;
     }
 }

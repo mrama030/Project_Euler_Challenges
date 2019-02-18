@@ -9,7 +9,6 @@ public class Main
 {
     public static void main(String[] args)
     {
-        /*
         System.out.println("Problem 1");
         int solution_1 = Solutions.Problem_1();
         System.out.println(solution_1);
@@ -18,6 +17,11 @@ public class Main
         System.out.println("Problem 2");
         int solution_2 = Solutions.Problem_2();
         System.out.println(solution_2);
+        System.out.println("");
+
+        System.out.println("Problem 3");
+        long solution_3 = Solutions.Problem_3();
+        System.out.println(solution_3);
         System.out.println("");
 
         System.out.println("Problem 4");
@@ -39,12 +43,20 @@ public class Main
         int solution_7 = Solutions.Problem_7();
         System.out.println(solution_7);
         System.out.println("");
-        */
 
         System.out.println("Problem 8");
         long solution_8 = Solutions.Problem_8();
         System.out.println(solution_8);
         System.out.println("");
 
+        System.out.println("Problem 9");
+        int solution_9 = Solutions.Problem_9();
+        System.out.println(solution_9);
+        System.out.println("");
+
+        System.out.println("Problem 10");
+        long solution_10 = Solutions.Problem_10();
+        System.out.println(solution_10);
+        System.out.println("");
     }
 }
