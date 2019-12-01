@@ -334,7 +334,7 @@ public class Solutions
     }
 
     // How many Sundays fell on the first of the month during the twentieth century (1 Jan 1901 to 31 Dec 2000)?
-    // 1 Jan 1900 was a Monday.
+    // 1 Jan 1900 was a Monday, 1 Jan 1901 was a Tuesday.
     // Thirty days has September, April, June and November.
     // All the rest have thirty-one, Saving February alone, Which has twenty-eight, rain or shine.
     // And on leap years, twenty-nine.
@@ -362,11 +362,11 @@ public class Solutions
 
         // Day of the week IDs 1 = Sunday -> 7 = Saturday
         // Month of the year IDs: 1 = January -> 12 = December
-        // Year IDs: 1900 -> 2000
+        // Year IDs: 1901 -> 2000
 
-        int dayOfTheWeekIndex = 2; // start at Monday
+        int dayOfTheWeekIndex = 3; // start at Tuesday
 
-        int startYear = 1900;
+        int startYear = 1901;
         int startMonth = 1; // January
         int startDay = 1;
         int endYear = 2000;
@@ -433,7 +433,7 @@ public class Solutions
 
                 for (int day = s_day; day < e_day; day++)
                 {
-                    if (dayOfTheWeekIndex == 1)
+                    if (dayOfTheWeekIndex == 1 && day == 1)
                     {
                         numberOfSundaysCount++;
                     }
