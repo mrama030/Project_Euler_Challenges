@@ -27,4 +27,23 @@ public class Helper
         }
         return true;
     }
+
+    public static boolean isLeapYear(int year)
+    {
+        if (year % 100 == 0) // year is a century
+        {
+            if (year % 400 == 0) // is leap if divisible by 400
+            {
+                return true;
+            }
+
+            return false;
+        }
+        else if (year % 4 == 0)
+        {
+            return true;
+        }
+
+        return false;
+    }
 }

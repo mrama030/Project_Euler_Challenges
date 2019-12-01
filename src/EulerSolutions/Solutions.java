@@ -332,4 +332,123 @@ public class Solutions
 
         return sum;
     }
+
+    // How many Sundays fell on the first of the month during the twentieth century (1 Jan 1901 to 31 Dec 2000)?
+    // 1 Jan 1900 was a Monday.
+    // Thirty days has September, April, June and November.
+    // All the rest have thirty-one, Saving February alone, Which has twenty-eight, rain or shine.
+    // And on leap years, twenty-nine.
+    // A leap year occurs on any year evenly divisible by 4, but not on a century unless it is divisible by 400.
+    // a century year cannot be a leap year unless it is divisible by 400.
+    public static int Problem_19() // NOT CORRECT
+    {
+        int[] numberOfDaysInMonth =
+        {
+            31, // Jan = 0
+            28, // Feb = 1
+            31, // March = 2
+            30, // April = 3
+            31, // May = 4
+            30, // June = 5
+            31, // July = 6
+            31, // Aug = 7
+            30, // Sep = 8
+            31, // Oct = 9
+            30, // Nov = 10
+            31, // Dec = 11
+        };
+
+        int numberOfSundaysCount = 0;
+
+        // Day of the week IDs 1 = Sunday -> 7 = Saturday
+        // Month of the year IDs: 1 = January -> 12 = December
+        // Year IDs: 1900 -> 2000
+
+        int dayOfTheWeekIndex = 2; // start at Monday
+
+        int startYear = 1900;
+        int startMonth = 1; // January
+        int startDay = 1;
+        int endYear = 2000;
+        int endMonth = 12; // December
+        int endDay = 31;
+
+        // Loop on years.
+        for (int year = startYear; year < endYear; year++)
+        {
+            int s_month;
+            int e_month;
+
+            if (year == startYear)
+            {
+                s_month = startMonth;
+            }
+            else
+            {
+                s_month = 1;
+            }
+
+            if (year == endYear)
+            {
+                e_month = endMonth;
+            }
+            else
+            {
+                e_month = 12;
+            }
+
+            // Loop on months of the year.
+            for (int month = s_month; month < e_month; month++)
+            {
+                int s_day;
+                int e_day;
+
+                if (year == startYear && month == startMonth)
+                {
+                    s_day = startDay;
+                }
+                else
+                {
+                    s_day = 1;
+                }
+
+                if (year == endYear && month == endMonth)
+                {
+                    e_day = endDay;
+                }
+                else
+                {
+                    int temp = numberOfDaysInMonth[month - 1];
+
+                    if (temp == 28) // February, determine if leap year
+                    {
+                        if (Helper.isLeapYear(year))
+                        {
+                            temp++;
+                        }
+                    }
+
+                    e_day = temp; // Last day of the month
+                }
+
+                for (int day = s_day; day < e_day; day++)
+                {
+                    if (dayOfTheWeekIndex == 1)
+                    {
+                        numberOfSundaysCount++;
+                    }
+
+                    dayOfTheWeekIndex++;
+
+                    if (dayOfTheWeekIndex == 8)
+                    {
+                        dayOfTheWeekIndex = 1; // restart the week at Sunday
+                    }
+                }
+
+            }
+        }
+
+        return numberOfSundaysCount;
+    }
 }
